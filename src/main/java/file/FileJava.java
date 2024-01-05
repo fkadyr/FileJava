@@ -7,11 +7,10 @@ import java.util.logging.Logger;
 public class FileJava {
 
     public static final Logger logger = Logger.getLogger(FileJava.class.getName());
-
-    public static void createFile() throws Exception {
-        Random random = new Random();
+    private static final Random random = new Random();
+    public static void createFile(String workdir) throws Exception {
         for (int i = 1; i <= 10 ; i++) {
-            File myFile = new File("C:\\Users\\zverk\\IdeaProjects\\FileJava\\src\\main\\java\\file\\data\\"+i+".txt");
+            File myFile = new File(workdir+i+".txt");
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(myFile));
             bufferedWriter.write(String.valueOf(random.nextInt(1000)));
             bufferedWriter.newLine();
@@ -22,13 +21,12 @@ public class FileJava {
         }
     }
 
-    public static void sumNumberInTwoFile() throws Exception{
-        Random random = new Random();
+    public static int sumNumberInTwoFile(String workdir) throws Exception{
         int sum = 0;
         for (int i = 1; i <= 2 ; i++) {
             int n = random.nextInt(10);
             //logger.info("n = " + n);
-            File path = new File("C:\\Users\\zverk\\IdeaProjects\\FileJava\\src\\main\\java\\file\\data\\"+ n +".txt");
+            File path = new File(workdir + n +".txt");
             BufferedReader br = new BufferedReader(new FileReader(path));
             String st = br.readLine();
             int count = 0;
@@ -41,10 +39,9 @@ public class FileJava {
                 st = br.readLine();
             }
             logger.info(String.valueOf(count));
-            assert count == 3 : "В файле не достаточно чисел!!";
             br.close();
         }
-        logger.info("sum = " + sum);
+        return sum;
     }
 
     public static boolean isInteger(String st) {
@@ -56,7 +53,9 @@ public class FileJava {
         }
     }
     public static void main(String[] args) throws Exception {
-        //createFile();
-        sumNumberInTwoFile();
+
+        String path = "src/main/java/file/data/";
+        //createFile(path);
+        System.out.println("Сумма всех чисел -> "+sumNumberInTwoFile(path));
     }
 }

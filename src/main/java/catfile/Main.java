@@ -6,16 +6,17 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        for (Cat cat : listCat()) {
+        String path = "src/main/java/catfile/file/cat.txt";
+        for (Cat cat : listCat(path)) {
             System.out.println(cat.toString());
         }
 
     }
 
-    public static List<Cat> listCat() {
+    public static List<Cat> listCat(String path) {
 
         List<Cat> catList = new ArrayList<>();
-        File catFile = new File("C:\\Users\\zverk\\IdeaProjects\\FileJava\\src\\main\\java\\catfile\\file\\cat.txt");
+        File catFile = new File(path);
 
         try (BufferedReader br = new BufferedReader(new FileReader(catFile))) {
             String st = br.readLine();

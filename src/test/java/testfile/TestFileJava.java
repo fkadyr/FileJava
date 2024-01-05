@@ -11,13 +11,15 @@ import java.io.FileReader;
 import org.junit.jupiter.api.Assertions;
 
 
-public class TestFileJava {
+class TestFileJava {
+
 
     @Test
-    public void testCreateFile() throws Exception {
-        FileJava.createFile();
+    void testCreateFile() throws Exception {
+        String path = "src/main/java/file/data/";
+        FileJava.createFile(path);
         for (int i = 1; i <= 10; i++) {
-            File file = new File("C:\\Users\\zverk\\IdeaProjects\\FileJava\\src\\main\\java\\file\\data\\" + i + ".txt");
+            File file = new File(path + i + ".txt");
             BufferedReader br = new BufferedReader(new FileReader(file));
             String st = br.readLine();
             int count = 0;
